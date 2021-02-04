@@ -24,6 +24,7 @@ export class SignUpController implements Controller {
         return badRequest(new InvalidParamError('email'))
       }
     } catch (error) {
+      // TO DO: Adicionar uma lib para LOG
       return serverError()
     }
   }
