@@ -39,7 +39,6 @@ describe('LogControllerDecorator', () => {
   test('Should call controller handle', async () => {
     const { sut, controllerStub } = makeSut()
     const handleSpy = jest.spyOn(controllerStub, 'handle')
-
     const httpRequest = {
       body: {
         email: 'any_email@email.com',
