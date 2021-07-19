@@ -1,20 +1,24 @@
-import { MongoHelper } from './../../infra/db/mongodb/helpers/mongo-helpers'
 import request from 'supertest'
+import { MongoHelper } from './../../infra/db/mongodb/helpers/mongo-helpers'
 import app from '../config/app'
+import { Collection } from 'mongodb'
+
+let accountCollection: Collection
 
 describe('SignUp Routes', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
   })
+
   afterAll(async () => {
     await MongoHelper.disconnect()
   })
+
   beforeEach(async () => {
-    const accountCollection = await MongoHelper.getCollection('accounts')
+    accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
-
-  test('Should return an account on success', async () => {
+  test.skip('Should return an account on success', async () => {
     await request(app)
       .post('/api/signup')
       .send({
